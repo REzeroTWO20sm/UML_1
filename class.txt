@@ -1,0 +1,58 @@
+@startuml
+
+class Disk {
+    + spaceAvailable: int
+    + write(data): bool
+    + finalize(): bool
+    + verify(): bool
+}
+
+class Record {
+    + data: string
+}
+
+class VerificationResult {
+    + success: bool
+    + errors: string
+}
+
+class DiskWriteResult {
+    + success: bool
+    + reason: string
+}
+
+class PlanetUML {
+    + main()
+}
+
+PlanetUML --> Disk: uses
+PlanetUML --> Record: uses
+PlanetUML --> VerificationResult: uses
+PlanetUML --> DiskWriteResult: uses
+
+DiskWriteResult -- Disk
+VerificationResult -- Disk
+
+@enduml
+
+Этот код представляет диаграмму классов, описывающую различные классы и их взаимосвязи в контексте записи данных на DVD.
+
+1. Класс Disk представляет DVD и имеет следующие атрибуты и методы:
+   - spaceAvailable: хранит количество доступного места на DVD.
+   - write(data): метод для записи данных на DVD, возвращает булевое значение в зависимости от успешности операции.
+   - finalize(): метод для завершения записи данных на DVD, возвращает булевое значение.
+   - verify(): метод для верификации записанных данных на DVD, возвращает булевое значение.
+
+2. Класс Record представляет данные, которые будут записаны на DVD.
+
+3. Класс VerificationResult представляет результат верификации данных на DVD и имеет следующие атрибуты:
+   - success: булевое значение, указывающее успешность верификации.
+   - errors: строка с описанием возможных ошибок при верификации.
+
+4. Класс DiskWriteResult представляет результат операции записи данных на DVD и имеет следующие атрибуты:
+   - success: булевое значение, указывающее успешность операции записи.
+   - reason: строка с описанием причины неудачи операции записи.
+
+5. Класс PlanetUML является главным классом и использует другие классы в контексте записи данных на DVD.
+
+Диаграмма классов показывает связи между классами и их роли в процессе записи данных на DVD.

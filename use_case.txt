@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+
+actor Program
+
+rectangle "Write and Verify Data" {
+  Program --> (Write and Verify Data)
+}
+
+rectangle "Insufficient Disk Space" {
+  Program --> (Insufficient Disk Space)
+}
+
+rectangle "Insufficient Disk Space, Successful After Finalization" {
+  Program --> (Insufficient Disk Space, Successful After Finalization)
+}
+
+rectangle "Disk Damage" {
+  Program --> (Disk Damage)
+}
+
+rectangle "Write with Errors" {
+  Program --> (Write with Errors)
+}
+
+@enduml
+
+Этот код представляет собой диаграмму состояний (state diagram) для процесса записи на DVD с различными состояниями, которые программа может пережить во время этого процесса.
+
+1. Write and Verify Data:
+   - Это начальное состояние, в котором программа начинает процесс записи данных на DVD и последующей верификации.
+
+2. Insufficient Disk Space:
+   - Это состояние, которое возникает, когда программа обнаруживает, что на диске недостаточно места для записи всех данных.
+
+3. Insufficient Disk Space, Successful After Finalization:
+   - Это состояние, которое показывает успешную запись данных на DVD после того, как программа завершила процесс финализации записи.
+
+4. Disk Damage:
+   - Это состояние, которое возникает, когда программа обнаруживает повреждение диска во время процесса записи данных.
+
+5. Write with Errors:
+   - Это состояние, которое показывает ошибки или проблемы при записи данных на DVD.
+
+Данная диаграмма помогает визуализировать различные состояния, через которые может пройти программа в процессе записи данных на DVD, и позволяет лучше понять возможные сценарии работы программы в таких ситуациях.

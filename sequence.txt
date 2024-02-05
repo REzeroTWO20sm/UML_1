@@ -1,0 +1,97 @@
+@startuml
+title DVD Recording Process
+
+participant "program" as program
+participant "Disk" as Disk
+participant "Record" as Record
+
+=== Case 1: Successful Record and Verify ===
+program -> Disk: createDisk()
+activate Disk
+Disk -> Record: createRecord(data)
+activate Record
+Record --> Disk: data
+deactivate Record
+Disk -> Record: finalizeRecord()
+activate Record
+Record --> Disk: finalized
+deactivate Record
+Disk -> Record: verifyRecord()
+activate Record
+Record --> Disk: verified
+deactivate Record
+deactivate Disk
+
+=== Case 2: Insufficient Space on Disk ===
+program -> Disk: createDisk()
+activate Disk
+Disk -> Record: createRecord(largeData)
+activate Record
+Record --> Disk: insufficientSpaceError
+deactivate Record
+deactivate Disk
+
+=== Case 3: Insufficient Space, Successful after Finalize ===
+program -> Disk: createDisk()
+activate Disk
+Disk -> Record: createRecord(largeData)
+activate Record
+Record --> Disk: insufficientSpaceError
+deactivate Record
+Disk -> Record: finalizeRecord()
+activate Record
+Record --> Disk: finalized
+deactivate Record
+Disk -> Record: verifyRecord()
+activate Record
+Record --> Disk: verified
+deactivate Record
+deactivate Disk
+
+=== Case 4: Disk Damage ===
+program -> Disk: createDisk()
+activate Disk
+Disk -> Record: createRecord(data)
+activate Record
+Record --> Disk: data
+deactivate Record
+Disk --> program: diskDamageError
+deactivate Disk
+
+=== Case 5: Error in Verification ===
+program -> Disk: createDisk()
+activate Disk
+Disk -> Record: createRecord(data)
+activate Record
+Record --> Disk: data
+deactivate Record
+Disk -> Record: finalizeRecord()
+activate Record
+Record --> Disk: finalized
+deactivate Record
+Disk -> Record: verifyRecord()
+activate Record
+Record --> Disk: verificationError
+deactivate Record
+deactivate Disk
+
+@enduml
+
+Этот код представляет собой последовательную диаграмму (sequence diagram) для процесса записи на DVD с различными случаями использования. В каждом случае использования показаны шаги, которые выполняются программой, диском и записью.
+
+1. Case 1: Successful Record and Verify:
+   - Программа создает диск, затем создает запись с данными, финализирует запись и затем верифицирует ее.
+  
+2. Case 2: Insufficient Space on Disk:
+   - Программа создает диск, пытается создать запись с большим объемом данных, но сталкивается с ошибкой недостаточного места на диске.
+
+3. Case 3: Insufficient Space, Successful after Finalize:
+   - Программа создает диск, пытается создать запись с большим объемом данных, финализирует запись и затем успешно верифицирует ее после завершения.
+
+4. Case 4: Disk Damage:
+   - Программа создает диск, создает запись с данными, но сталкивается с ошибкой повреждения диска.
+
+5. Case 5: Error in Verification:
+   - Программа создает диск, создает запись с данными, финализирует запись и затем сталкивается с ошибкой при верификации записи.
+
+Каждый случай использования показывает взаимодействие между программой, диском и записью в рамках процесса записи на DVD. Данный код можно использовать для визуализации этого процесса и отслеживания различных сценариев, которые могут возникнуть во время работы программы.
